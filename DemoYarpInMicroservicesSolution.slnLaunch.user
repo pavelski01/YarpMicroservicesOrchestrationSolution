@@ -1,0 +1,19 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "productApi\\ProductApi.csproj",
+        "Action": "StartWithoutDebugging"
+      },
+      {
+        "Path": "OrderApi\\OrderApi.csproj",
+        "Action": "StartWithoutDebugging"
+      },
+      {
+        "Path": "ApiGateway\\ApiGateway.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
