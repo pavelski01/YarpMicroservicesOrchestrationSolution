@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9TEqAvBBj+o=",
+  "dgSpecHash": "DzfaCBPIcBo=",
   "success": true,
-  "projectFilePath": "C:\\Users\\pstrzeszkowski\\source\\repos\\DemoYarpInMicroservicesSolution\\productApi\\ProductApi.csproj",
+  "projectFilePath": "C:\\repo\\DemoYarpInMicroservicesSolution\\productApi\\ProductApi.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
