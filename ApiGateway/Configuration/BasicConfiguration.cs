@@ -12,8 +12,7 @@ public static class BasicConfiguration
             new()
             {
                 RouteId = "product-route",
-                //RateLimiterPolicy = "RateLimiterPolicy",
-                AuthorizationPolicy = "Default",
+                RateLimiterPolicy = "RateLimiterPolicy",
                 ClusterId = "product-cluster",
                 Match = new()
                 {
@@ -24,8 +23,7 @@ public static class BasicConfiguration
             {
                 RouteId = "order-route",
                 ClusterId = "order-cluster",
-                //RateLimiterPolicy = "RateLimiterPolicy",
-                AuthorizationPolicy = "myPolicy",
+                RateLimiterPolicy = "RateLimiterPolicy",
                 Match = new()
                 {
                     Path = "/api/order/{*any}"
@@ -41,7 +39,7 @@ public static class BasicConfiguration
             new()
             {
                 ClusterId = "product-cluster",
-                //LoadBalancingPolicy = LoadBalancingPolicies.RoundRobin,
+                LoadBalancingPolicy = LoadBalancingPolicies.RoundRobin,
                 Destinations = new Dictionary<string, DestinationConfig>(StringComparer.InvariantCultureIgnoreCase)
                 {
                     { "product-destination1", new() { Address = "http://localhost:5001" } },

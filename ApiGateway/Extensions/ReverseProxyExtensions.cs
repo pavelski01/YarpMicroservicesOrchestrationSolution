@@ -25,7 +25,7 @@ public static class ReverseProxyExtensions
             {
                 transformContext.HttpContext.Request.Headers["X-Modifier-Header"] = "skycore";
                 transformContext.ProxyRequest.Headers.Add("X-Forwarded-Path", "/new-path");
-                transformContext.HttpContext.Request.Path = "/new-path";
+                //transformContext.HttpContext.Request.Path = "/new-path";
                 var request = transformContext.HttpContext.Request;
                 Console.WriteLine($"Request Path: {request.Path}");
                 return ValueTask.CompletedTask;
@@ -46,8 +46,6 @@ public static class ReverseProxyExtensions
         endpoints
             .MapReverseProxy(proxyPipeline =>
             {
-                //proxyPipeline.UseAuthentication();
-                //proxyPipeline.UseAuthorization();
                 proxyPipeline.UseSessionAffinity();
                 proxyPipeline.UseLoadBalancing();
                 proxyPipeline.UsePassiveHealthChecks();
@@ -55,7 +53,6 @@ public static class ReverseProxyExtensions
                 proxyPipeline.UseMiddleware<Interceptor>();
                 proxyPipeline.UseReverseProxyPipeline();
             });
-            //.RequireAuthorization();
         return endpoints;
     }
 

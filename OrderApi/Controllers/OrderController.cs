@@ -9,7 +9,7 @@ public class OrderController : ControllerBase
     [HttpGet]
     public async Task<IEnumerable<Order>> Get()
     {
-        //await Task.Delay(4000);
+        await Task.Delay(4000);
         var orders = new List<Order>();
         orders.AddRange([
             new(1, "Alice", "Laptop"),
