@@ -1,5 +1,12 @@
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddControllers();
+
 var app = builder.Build();
-app.MapControllers();
+
+app.MapGet("/api/product", async () =>
+{
+    await Task.Delay(4000);
+    string[] products = ["Clothes", "Bags", "Televisions", "Shoes", "Phones", "Accessories"];
+    return Results.Json(products);
+});
+
 app.Run();

@@ -12,8 +12,9 @@ public static class BasicConfiguration
             new()
             {
                 RouteId = "product-route",
-                RateLimiterPolicy = "RateLimiterPolicy",
                 ClusterId = "product-cluster",
+                RateLimiterPolicy = "RateLimiterPolicy",
+                AuthorizationPolicy = "Default",
                 Match = new()
                 {
                     Path = "/api/product/{*any}"
@@ -24,6 +25,7 @@ public static class BasicConfiguration
                 RouteId = "order-route",
                 ClusterId = "order-cluster",
                 RateLimiterPolicy = "RateLimiterPolicy",
+                AuthorizationPolicy = "LimitedAccessPolicy",
                 Match = new()
                 {
                     Path = "/api/order/{*any}"

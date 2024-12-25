@@ -26,14 +26,12 @@ public static class ReverseProxyExtensions
                 transformContext.HttpContext.Request.Headers["X-Modifier-Header"] = "skycore";
                 transformContext.ProxyRequest.Headers.Add("X-Forwarded-Path", "/new-path");
                 //transformContext.HttpContext.Request.Path = "/new-path";
-                var request = transformContext.HttpContext.Request;
-                Console.WriteLine($"Request Path: {request.Path}");
+                Console.WriteLine($"Request path: {transformContext.HttpContext.Request.Path}");
                 return ValueTask.CompletedTask;
             });
             builder.AddResponseTransform(transformContext =>
             {
-                transformContext.HttpContext.Response.Headers["X-Custom-Response-Header"] = "Custom Header included";
-                Console.WriteLine($"Response is modified");
+                transformContext.HttpContext.Response.Headers["X-Custom-Response-Header"] = "Custom header included";
                 return ValueTask.CompletedTask;
             });
         });
@@ -46,6 +44,8 @@ public static class ReverseProxyExtensions
         endpoints
             .MapReverseProxy(proxyPipeline =>
             {
+                proxyPipeline.UseAuthentication();
+                proxyPipeline.UseAuthorization();
                 proxyPipeline.UseSessionAffinity();
                 proxyPipeline.UseLoadBalancing();
                 proxyPipeline.UsePassiveHealthChecks();

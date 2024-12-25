@@ -1,6 +1,14 @@
-@ApiGateway_HostAddress = http://localhost:5277
+@BaseUrl = http://localhost:3000
+@AccessToken =
 
-GET {{ApiGateway_HostAddress}}/weatherforecast/
+### Login
+GET {{BaseUrl}}/login?isLimitedAccess=true
 Accept: application/json
 
-###
+#### Proxy ProductAPI
+GET {{BaseUrl}}/api/product
+Authorization: Bearer {{AccessToken}}
+
+#### Proxy OrderAPI
+GET {{BaseUrl}}/api/order
+Authorization: Bearer {{AccessToken}}
