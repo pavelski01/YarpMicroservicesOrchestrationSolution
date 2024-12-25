@@ -6,18 +6,17 @@ using System.Security.Claims;
 using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddMemoryCache();
 builder.Services.AddSingleton<IMemoryCacheService, MemoryCacheService>();
 builder.Services
     .AddAuthentication(BearerTokenDefaults.AuthenticationScheme)
     .AddBearerToken();
-
 builder.Services
     .AddAuthorizationBuilder()
     .AddPolicy("LimitedAccessPolicy", policy => policy
         .RequireAuthenticatedUser()
         .RequireClaim("limited-access", true.ToString()));
-
 builder.Services.AddRateLimiter(
     options => options
         .AddFixedWindowLimiter("RateLimiterPolicy", opt =>
@@ -44,7 +43,6 @@ app.MapGet("login", (bool isLimitedAccess = false) =>
             BearerTokenDefaults.AuthenticationScheme)
         ), 
         authenticationScheme: BearerTokenDefaults.AuthenticationScheme));
-
 app.UseRateLimiter();
 app.MapReverseProxyPipeline();
 
