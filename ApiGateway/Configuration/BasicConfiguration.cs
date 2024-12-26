@@ -45,8 +45,7 @@ public static class BasicConfiguration
                 Destinations = new Dictionary<string, DestinationConfig>(StringComparer.InvariantCultureIgnoreCase)
                 {
                     { "product-destination1", new() { Address = "http://localhost:5001" } },
-                    { "product-destination2", new() { Address = "http://localhost:5003" } },
-                    { "product-destination3", new() { Address = "http://localhost:5004" } }
+                    { "product-destination2", new() { Address = "http://localhost:5003" } }
                 }
             },
             new()
