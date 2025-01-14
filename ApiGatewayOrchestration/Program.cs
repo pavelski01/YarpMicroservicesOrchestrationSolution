@@ -1,3 +1,5 @@
+using ApiGatewayOrchestration.MailDev;
+
 var builder = DistributedApplication.CreateBuilder(args);
 
 var orderApi = builder.AddProject<Projects.OrderApi>("OrderApi")
@@ -7,7 +9,9 @@ var productApi = builder.AddProject<Projects.ProductApi>("ProductApi")
 var productApi2 = builder.AddProject<Projects.ProductApi>("ProductApi2", null as string)
     .WithEndpoint(5003, null, "http")
     .WithReplicas(2);
+var smtp = builder.AddMailDev("SmtpUri");
 var _ = builder.AddProject<Projects.ApiGateway>("ApiGateway")
+    .WithReference(smtp)
     .WithExternalHttpEndpoints()
     .WaitFor(orderApi)
     .WaitFor(productApi)

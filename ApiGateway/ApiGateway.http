@@ -12,3 +12,12 @@ Authorization: Bearer {{AccessToken}}
 #### Proxy OrderAPI
 GET {{BaseUrl}}/api/order
 Authorization: Bearer {{AccessToken}}
+
+#### Mail
+POST {{BaseUrl}}/mail HTTP/1.1
+Content-Type: application/json
+{
+  "email": "test@test.com",
+  "title": "Welcome to our newsletter!",
+  "content": "Thank you for subscribing to our newsletter!"
+}
