@@ -13,6 +13,7 @@ var smtp = builder.AddMailDev("SmtpUri");
 var _ = builder.AddProject<Projects.ApiGateway>("ApiGateway")
     .WithReference(smtp)
     .WithExternalHttpEndpoints()
+    .WaitFor(smtp)
     .WaitFor(orderApi)
     .WaitFor(productApi)
     .WaitFor(productApi2);

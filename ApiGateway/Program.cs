@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddMemoryCache();
 builder.Services.AddSingleton<IMemoryCacheService, MemoryCacheService>();
-builder.Services.AddSingleton(sp =>
+builder.Services.AddSingleton(_ =>
 {
     var smtpUri = new Uri(builder.Configuration.GetConnectionString("SmtpUri") 
         ?? throw new InvalidDataException("SmtpUri not present in configuration!"));
